@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ilgamlake.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SystemEvent.cpp" />
     <ClCompile Include="SystemUI.cpp" />
