@@ -24,6 +24,12 @@
     <ClCompile Include="SystemEvent.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Ilgamlake.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RankingView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SystemUI.h">
@@ -32,5 +38,13 @@
     <ClInclude Include="SystemEvent.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="RankingView.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\6794c\OneDrive\바탕 화면\Ranking.csv">
+      <Filter>리소스 파일</Filter>
+    </None>
   </ItemGroup>
 </Project>
