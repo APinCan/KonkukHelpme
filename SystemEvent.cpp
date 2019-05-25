@@ -1,7 +1,5 @@
 #include "SystemEvent.h"
 
-
-
 SystemEvent::SystemEvent()
 {
 }
@@ -14,7 +12,7 @@ SystemEvent::~SystemEvent()
 //키보드 이벤트를 받아옴
 int SystemEvent::keyboardEvent()
 {
-	char key = getchar();
+	char key = _getch();
 
 	if (key == 'w' || key == 'W') {
 		return UP;
@@ -27,5 +25,8 @@ int SystemEvent::keyboardEvent()
 	}
 	else if (key == 'd' || key == 'D') {
 		return RIGHT;
+	}
+	else if (key == '\n') {
+		return SUBMIT;
 	}
 }

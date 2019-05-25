@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<windows.h>
+#include "SystemEvent.h"
 
 using namespace std;
 
@@ -12,6 +13,6 @@ public:
 	void frameDesign();
 	void mainTitle();
 	void cursorMoveXY(int x, int y);
-	void mainTitleMenu();
+	int mainTitleMenu();
 };
 

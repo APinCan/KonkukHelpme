@@ -8,9 +8,9 @@ int main() {
 
 	sysui.frameDesign();
 	sysui.mainTitle();
-	sysui.mainTitleMenu();
+	int menuIntput=sysui.mainTitleMenu();
 	
-	system("pause");
+	//system("pause");
 
 	return 0;
 }
