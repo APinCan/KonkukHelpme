@@ -25,7 +25,7 @@ void main()
 
 		c.Display2();
 
-		if (c.getOC() == 14) break;//ÀÏ°öÂ¦ ´Ù Ã£À¸¸é Å»Ãâ //OR ÇĞ½ÄÀ» °í¸£¸é  game over.//playcount¸¦ Á¦ÇÑÀ» µÖ¼­ game overÇÒ±î °í¹ÎÁß.
+		if (c.getOC() == 14) break;//ì¼ê³±ì§ ë‹¤ ì°¾ìœ¼ë©´ íƒˆì¶œ //OR í•™ì‹ì„ ê³ ë¥´ë©´  game over.//playcountë¥¼ ì œí•œì„ ë‘¬ì„œ game overí• ê¹Œ ê³ ë¯¼ì¤‘.
 
 	}
 
