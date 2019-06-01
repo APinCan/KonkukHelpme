@@ -16,7 +16,7 @@ public:
 	~SystemUI();
 	void initFrame();
 	void mainTitle();
-	void cursorMoveXY(int x, int y);
+	//void cursorMoveXY(int x, int y);
 	int mainTitleMenu();
 	void mainMenuAction(int index);
 };

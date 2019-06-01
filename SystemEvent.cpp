@@ -30,3 +30,13 @@ int SystemEvent::keyboardEvent()
 		return SUBMIT;
 	}
 }
+
+void SystemEvent::cursorMoveXY(int x, int y)
+{
+	//콘솔의 핸들 가져오기
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD pos;
+	pos.X = x;
+	pos.Y = y;
+	SetConsoleCursorPosition(consoleHandle, pos);
+}

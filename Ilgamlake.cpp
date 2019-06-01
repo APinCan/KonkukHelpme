@@ -164,6 +164,7 @@ public:
 		}
 	}
 };
+/**
 int main()
 {
 	srand(time(NULL));
@@ -174,3 +175,4 @@ int main()
 	getchar();
 	system("pause");
 }
+*/

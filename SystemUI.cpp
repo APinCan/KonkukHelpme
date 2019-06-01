@@ -29,19 +29,21 @@ void SystemUI::initFrame()
 void SystemUI::mainTitle()
 {
 	cout << "\n\n\n\n"; //0,1,2,3
-	cout << "           ######     #       ######    #    #          #     #    #             #     #      "<<endl; //4
-	cout << "               #      #       #         #    #         #      #    #            #      #	   "<< endl; //5
-	cout << "              #    ####       #         ######        # #     ######           # #     #####  " << endl;//6
-	cout << "             #        #       #         #    #       #   #    #    #          #   #    #	   " << endl;//7
-	cout << "            #         #       ######    #    #      #     #   #    #         #     #   #	   " << endl;//8
-	cout <<endl;//9
-	cout << "              #                                        ##########              #########      " << endl;//10
-	cout << "              #                                       #          #                      #     " << endl;//11
-	cout << "              #                                       #          #              ########      " << endl;//12
-	cout << "              #########                                 ########                #			   " << endl;//13
-	cout << "                                                                                 #######	   " << endl;//14
+
+	cout << "         __ __            __         __" << endl;
+	cout << "        / //_/___  ____  / /____  __/ /__" << endl;
+	cout << "       / ,< / __ |/ __ |/ //_/ / / / //_/" << endl;
+	cout << "      / /| / /_/ / / / / ,< / /_/ / ,<" << endl;
+	cout << "     /_/ |_|____/_/ /_/_/|_||__,_/_/|_| __" << endl;
+	cout << "" << endl;
+	cout << "        / / / /__  / /___  /  |/  /__  / /" << endl;
+	cout << "       / /_/ / _ |/ / __ |/ /|_/ / _ |/ /" << endl;
+	cout << "      / __  /  __/ / /_/ / /  / /  __/_/" << endl;
+	cout << "     /_/ /_/|___/_/ .___/_/  /_/|___(_)" << endl;
+	cout << "                 /_/" << endl;
 }
 
+/*
 void SystemUI::cursorMoveXY(int x, int y)
 {
 	//콘솔의 핸들 가져오기
@@ -51,6 +53,7 @@ void SystemUI::cursorMoveXY(int x, int y)
 	pos.Y = y;
 	SetConsoleCursorPosition(consoleHandle, pos);
 }
+*/
 
 //타이틀의 메뉴를 출력
 int SystemUI::mainTitleMenu()
@@ -59,15 +62,15 @@ int SystemUI::mainTitleMenu()
 	int x = 24;
 	int y = 16;
 
-	cursorMoveXY(x - 2, y);
+	systemEvent.cursorMoveXY(x - 2, y);
 	cout << "> 게임시작(game1)";
-	cursorMoveXY(x, y+1);
+	systemEvent.cursorMoveXY(x, y+1);
 	cout << "게임시작(game2)";
-	cursorMoveXY(x, y + 2);
+	systemEvent.cursorMoveXY(x, y + 2);
 	cout << "게임시작(game3)";
-	cursorMoveXY(x, y + 3);
+	systemEvent.cursorMoveXY(x, y + 3);
 	cout << "  랭킹";
-	cursorMoveXY(x, y+4);
+	systemEvent.cursorMoveXY(x, y+4);
 	cout << "  종료";
 
 	//특정 이벤트가 발생할때까지 무한반복
@@ -77,17 +80,17 @@ int SystemUI::mainTitleMenu()
 		switch (key) {
 		case UP:
 			if (y > 16) {
-				cursorMoveXY(x - 2, y);
+				systemEvent.cursorMoveXY(x - 2, y);
 				cout << " ";
-				cursorMoveXY(x - 2, --y);
+				systemEvent.cursorMoveXY(x - 2, --y);
 				cout << ">";
 			}
 			break;
 		case DOWN:
 			if (y < 20) {
-				cursorMoveXY(x - 2, y);
+				systemEvent.cursorMoveXY(x - 2, y);
 				cout << " ";
-				cursorMoveXY(x - 2, ++y);
+				systemEvent.cursorMoveXY(x - 2, ++y);
 				cout << ">";
 			}
 			break;
