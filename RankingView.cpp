@@ -41,8 +41,16 @@ void RankingView::rankingViewFrame()
 	printf("======================================================================================\n");
 }
 
-void RankingView::getGameResult(string name, int score, int grade)
+//다른 클래스에서 ranking에 새로운 유저데이터 추가
+void RankingView::addGameResult(string name, int score, int grade)
 {
+	UserData tmpData;
+	
+	tmpData.name = name;
+	tmpData.score = score;
+	tmpData.grade = grade;
+	//csv파일에 넣기
+	writeRankingFile(tmpData);
 }
 
 //파일을 읽어서 userdata 벡터변수에 저장
@@ -77,13 +85,39 @@ void RankingView::readRankingFile()
 		userdata.push_back(tmpdata);
 		
 	}
+	bubbleSort();
 
 	file.close();
 }
 
 void RankingView::bubbleSort()
 {
-	for (int i = 0; i < userdata.size(); i++) {
-
+	for (int i = 0; i < userdata.size()-1; i++) {
+		for (int j = 0; j < userdata.size() - i-1; j++) {
+			if (userdata.at(j).score<userdata.at(j+1).score) {
+				UserData tmp = userdata.at(j);
+				userdata.at(j) = userdata.at(j + 1);
+				userdata.at(j + 1) = tmp;
+			}
+		}
 	}
+}
+
+void RankingView::writeRankingFile(UserData tmpData)
+{
+	ofstream file;
+
+	//쓰기 파일의 끝에 위치
+	file.open("Ranking.csv", ios::out | ios::ate);
+	if (file.fail()) {
+		cout << "file open fail" << endl;
+		exit(0);
+	}
+
+	file << tmpData.name << ", "
+		<< tmpData.score << ", "
+		<< tmpData.grade << ", "
+		<< "\n";
+
+	file.close();
 }

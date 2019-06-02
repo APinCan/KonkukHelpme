@@ -26,10 +26,11 @@ public:
 	~RankingView();
 	void showRankingView();
 	void rankingViewFrame();
-	void getGameResult(string name, int score, int grade);
+	void addGameResult(string name, int score, int grade);
 
 private:
 	void readRankingFile();
 	void bubbleSort();
+	void writeRankingFile(UserData tmpData);
 };
 

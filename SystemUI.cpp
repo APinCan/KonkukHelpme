@@ -28,19 +28,28 @@ void SystemUI::initFrame()
 //메인타이틀 텍스트 출력
 void SystemUI::mainTitle()
 {
+	SystemEvent systemEvent;
 	cout << "\n\n\n\n"; //0,1,2,3
 
-	cout << "         __ __            __         __" << endl;
-	cout << "        / //_/___  ____  / /____  __/ /__" << endl;
-	cout << "       / ,< / __ |/ __ |/ //_/ / / / //_/" << endl;
-	cout << "      / /| / /_/ / / / / ,< / /_/ / ,<" << endl;
-	cout << "     /_/ |_|____/_/ /_/_/|_||__,_/_/|_| __" << endl;
-	cout << "" << endl;
-	cout << "        / / / /__  / /___  /  |/  /__  / /" << endl;
-	cout << "       / /_/ / _ |/ / __ |/ /|_/ / _ |/ /" << endl;
-	cout << "      / __  /  __/ / /_/ / /  / /  __/_/" << endl;
-	cout << "     /_/ /_/|___/_/ .___/_/  /_/|___(_)" << endl;
-	cout << "                 /_/" << endl;
+	cout << "         __ __            __         __" << endl; //4
+	cout << "        / //_/___  ____  / /____  __/ /__" << endl; //5
+	cout << "       / ,< / __ |/ __ |/ //_/ / / / //_/" << endl;//6
+	cout << "      / /| / /_/ / / / / ,< / /_/ / ,<" << endl;//7
+	cout << "     /_/ |_|____/_/ /_/_/|_||__,_/_/|_| __" << endl;//8
+	cout << "" << endl;//9
+	cout << "        / / / /__  / /___  /  |/  /__  / /" << endl; //10
+	cout << "       / /_/ / _ |/ / __ |/ /|_/ / _ |/ /" << endl; //11
+	cout << "      / __  /  __/ / /_/ / /  / /  __/_/" << endl;//12
+	cout << "     /_/ /_/|___/_/ .___/_/  /_/|___(_)" << endl;//13
+	cout << "                 /_/" << endl;//14
+	cout << "\n\n";//15,16
+	cout << "===============================================" << endl; //17
+	cout << "||                                           ||" << endl;//18
+	cout << "||                                           ||" << endl;//19
+	cout << "||                                           ||" << endl; //20
+	cout << "||                                           ||" << endl; //21
+	cout << "=============================================== " << endl;
+
 }
 
 /*
@@ -59,9 +68,11 @@ void SystemUI::cursorMoveXY(int x, int y)
 int SystemUI::mainTitleMenu()
 {
 	SystemEvent systemEvent;
-	int x = 24;
-	int y = 16;
+	int x = 28;
+	int y = 28;
 
+	systemEvent.cursorMoveXY(19, 20);
+	cout << "> Name" << endl;
 	systemEvent.cursorMoveXY(x - 2, y);
 	cout << "> 게임시작(game1)";
 	systemEvent.cursorMoveXY(x, y+1);
@@ -79,7 +90,7 @@ int SystemUI::mainTitleMenu()
 
 		switch (key) {
 		case UP:
-			if (y > 16) {
+			if (y > 28) {
 				systemEvent.cursorMoveXY(x - 2, y);
 				cout << " ";
 				systemEvent.cursorMoveXY(x - 2, --y);
@@ -87,7 +98,7 @@ int SystemUI::mainTitleMenu()
 			}
 			break;
 		case DOWN:
-			if (y < 20) {
+			if (y < 32) {
 				systemEvent.cursorMoveXY(x - 2, y);
 				cout << " ";
 				systemEvent.cursorMoveXY(x - 2, ++y);
@@ -97,7 +108,7 @@ int SystemUI::mainTitleMenu()
 		case SUBMIT:
 			//메서드를 통해 뭘 눌렀는지에 따른 적절한 함수로 이동할수있게
 			//인덱스는 0부터 시작
-			return y - 16;
+			return y - 28;
 		}
 	}
 }
