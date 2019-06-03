@@ -16,6 +16,7 @@ private:
 
 public:
 	Card();
+   
 	string front[4][4] = { { "  ","  ","  ","  " },
 
 	{ "  ","  ","  ","  " },
@@ -54,5 +55,6 @@ public:
 	int getScore();
 	int getOC();//opencount
 	int getPC();//playcount
-
+	void play();
+	void showCardView();
 };

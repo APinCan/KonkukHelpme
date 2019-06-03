@@ -4,6 +4,7 @@
 #include "SystemEvent.h"
 #include "RankingView.h"
 #include "EvadeGrade.h"
+#include "card.h"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ class SystemUI
 private:
 	RankingView rankingView;
 	EvadeGrade evadeGrade;
+	Card card;
 
 public:
 	SystemUI();

@@ -25,7 +25,7 @@ void main()
 
 		c.Display2();
 
-		if (c.getOC() == 14) break;//일곱짝 다 찾으면 탈출 //OR 학식을 고르면  game over.//playcount를 제한을 둬서 game over할까 고민중.
+		if (c.getOC() == 14) break;//?�곱�???찾으�??�출 //OR ?�식??고르�? game over.//playcount�??�한???�서 game over?�까 고�?�?
 
 	}
 

@@ -1,5 +1,6 @@
 #include "card.h"
 
+
 Card::Card()
 {
 	this->resultX1 = 5;
@@ -261,5 +262,39 @@ void Card::GameOver(){
 	cout << " " << "Y88b  d88P 888  888 888  888  888 Y8b.         Y88b. .d88P  Y8bd8P  Y8b.     888" << endl;
 	cout << " " << "'Y8888P88  'Y888888 888  888  888  'Y8888       'Y88888P'    Y88P    'Y8888  888" << endl;
 	Sleep(10000000);//ÀÏ´ÜÀº Àáµé¾î³õ°Ô ÇÏ´Â°É·Î.....
+}
+void Card::play() {
+
+	Card c;
+	c.SetConsoleSize(720, 640);
+	c.cardShuffle();
+	c.Display0();
+	Sleep(4000);
+
+	while (1)
+
+	{
+
+		c.Display1();
+
+		c.selectPlay1();
+
+		c.Display1();
+
+		c.selectPlay2();
+
+		c.Display2();
+
+		if (c.getOC() == 14) break;//?¼ê³±ì§???ì°¾ìœ¼ë©??ˆì¶œ //OR ?™ì‹??ê³ ë¥´ë©? game over.//playcountë¥??œí•œ???¬ì„œ game over? ê¹Œ ê³ ë?ì¤?
+
+	}
+
+	c.GameOver();
+
+
+}
+void Card::showCardView() {
+	system("cls");
+	play();
 }
 
