@@ -32,5 +32,6 @@ private:
 	void readRankingFile();
 	void bubbleSort();
 	void writeRankingFile(UserData tmpData);
+	void getUserScore();
 };
 

@@ -121,3 +121,24 @@ void RankingView::writeRankingFile(UserData tmpData)
 
 	file.close();
 }
+
+void RankingView::getUserScore()
+{
+	UserData setuser;
+
+	int sum = 0;
+	/*
+	sum+=userscore.첫번째게임
+	sum+=userscore.두번째게임
+	sum+=userscore.세번째게임
+	int score=(int)(sum/3);
+
+	//등급평가 코드
+
+	setuser.name="";
+	setuser.score=score;
+	setuser.grade=;
+	*/
+	userdata.push_back(setuser);
+	writeRankingFile(setuser);
+}
