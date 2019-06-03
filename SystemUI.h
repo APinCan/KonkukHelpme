@@ -3,6 +3,7 @@
 #include<windows.h>
 #include "SystemEvent.h"
 #include "RankingView.h"
+#include "EvadeGrade.h"
 
 using namespace std;
 
@@ -10,6 +11,7 @@ class SystemUI
 {
 private:
 	RankingView rankingView;
+	EvadeGrade evadeGrade;
 
 public:
 	SystemUI();

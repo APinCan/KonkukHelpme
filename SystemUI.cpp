@@ -122,7 +122,7 @@ void SystemUI::mainMenuAction(int index)
 		break;
 		//1= game2
 	case 1:
-		cout << "game2" << endl;
+		evadeGrade.showEvadeGradeView();
 		break;
 		//2=game3
 	case 2:
