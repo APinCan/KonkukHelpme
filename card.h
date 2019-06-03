@@ -4,6 +4,7 @@
 #include<conio.h>
 #include<string>
 #include<Windows.h>
+#include<stdlib.h>
 
 using namespace std;
 
@@ -57,4 +58,5 @@ public:
 	int getPC();//playcount
 	void play();
 	void showCardView();
+
 };

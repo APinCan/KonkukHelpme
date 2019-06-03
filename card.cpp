@@ -131,47 +131,57 @@ void Card::selectPlay1() {
 
 void Card::selectPlay2() {
 	playCount++;	// 입력할때마다 증가
-
+	
 	int x, y;		// 0행 0열이 아닌 1행 1열로 시작하게 하기 위한 변수
-
-	cout << " 2번째 뒤집을 카드를 선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
-
-	cin >> x >> y;
-
-	resultX2 = x - 1;
-
-	resultY2 = y - 1;
-
-	// 4행 5열 안에 값인지 확인해서 아니면 다시 입력
-
-	while (resultX2 > 3 || resultX2 < 0 || resultY2 > 4 || resultY2 < 0 || openCard[resultX2][resultY2] == 1 || (resultX1 == resultX2 && resultY1 == resultY2)) {
-
-		cout << " 잘못입력하셨거나 이미 오픈된 카드입니다." << endl;
-
-		cout << " 2번째 뒤집을 카드를 재선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
-
-		cin >> x >> y;
+	cout << "Hint!!를 보고싶으시다면 H를 눌러주세요! : " << endl;
+	cout << "Hint는 필요없다!! 2번째 뒤집을 카드를 선택하겠다! ( ex) 1 1 ~ 4 4 ) 숫자를 눌러주세요! : ";
+	char key = _getch();
+	if (key == 'h') {
+		system("cls");
+		Display0();
+		Sleep(2000);
+	}
+	else {
+		x = key-48;
+		cout << x;
+		cin >> y;
 
 		resultX2 = x - 1;
 
 		resultY2 = y - 1;
+
+		// 4행 5열 안에 값인지 확인해서 아니면 다시 입력
+
+		while (resultX2 > 3 || resultX2 < 0 || resultY2 > 4 || resultY2 < 0 || openCard[resultX2][resultY2] == 1 || (resultX1 == resultX2 && resultY1 == resultY2)) {
+
+			cout << " 잘못입력하셨거나 이미 오픈된 카드입니다." << endl;
+			cout << " 2번째 뒤집을 카드를 재선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
+			x = key-48;
+			cout << x;
+			cin >> y;
+
+			resultX2 = x - 1;
+
+			resultY2 = y - 1;
+		}
+
+		// 카드를 맞추었다면 
+		// 카드를 맞추었는데 만약 학식이다. --> 바로 game out
+		if (result[resultX1][resultY1] == 3 && result[resultX2][resultY2] == 3) {
+			GameOver();
+		}
+		else if (result[resultX1][resultY1] == result[resultX2][resultY2]) {
+
+			openCard[resultX1][resultY1] = 1;
+
+			openCard[resultX2][resultY2] = 1;
+
+			openCount += 2;
+
+			score += 10;
+		}
 	}
-
-	// 카드를 맞추었다면 
-	// 카드를 맞추었는데 만약 학식이다. --> 바로 game out
-	if (result[resultX1][resultY1]== 3 && result[resultX2][resultY2]== 3) {
-		GameOver();
-	}
-	else if(result[resultX1][resultY1] == result[resultX2][resultY2]) {
-
-		openCard[resultX1][resultY1] = 1;
-
-		openCard[resultX2][resultY2] = 1;
-
-		openCount += 2;
-
-		score += 10;
-	}
+	
 }
 
 void Card::Display2() {
@@ -263,30 +273,25 @@ void Card::GameOver(){
 	cout << " " << "'Y8888P88  'Y888888 888  888  888  'Y8888       'Y88888P'    Y88P    'Y8888  888" << endl;
 	Sleep(10000000);//일단은 잠들어놓게 하는걸로.....
 }
-void Card::play() {
 
+void Card::play() {
 	Card c;
 	c.SetConsoleSize(720, 640);
 	c.cardShuffle();
 	c.Display0();
-	Sleep(4000);
+	Sleep(3000);
 
 	while (1)
 
 	{
-
 		c.Display1();
-
 		c.selectPlay1();
-
 		c.Display1();
-
 		c.selectPlay2();
-
 		c.Display2();
-
-		if (c.getOC() == 14) break;//?쇨낢吏???李얠쑝硫??덉텧 //OR ?숈떇??怨좊Ⅴ硫? game over.//playcount瑜??쒗븳???ъ꽌 game over?좉퉴 怨좊?以?
-
+		
+	if (c.getOC() == 14) break;//?쇨낢吏???李얠쑝硫??덉텧 //OR ?숈떇??怨좊Ⅴ硫? game over.//playcount瑜??쒗븳???ъ꽌 game over?좉퉴 怨좊?以?
+	
 	}
 
 	c.GameOver();
