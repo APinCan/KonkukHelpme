@@ -5,8 +5,8 @@
 #include <time.h>
 #include <iostream>
 #include "EvadeGrade.h"
-#define MapX 20
-#define MapY 20
+#define MapX 30
+#define MapY 30
 using namespace std;
 int map[MapY][MapX];
 int Person[MapX] = { 0, };
@@ -27,18 +27,21 @@ void EvadeGrade:: gotoxy(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
+//speed 컨트롤
 int EvadeGrade::gradespeed(int *speed, int *score)
-{//speed 컨트롤
-	if (*score > 50) *speed = 200;
-	if (*score > 150) *speed = 150;
-	if (*score > 200) *speed = 100;
-	if (*score > 250) *speed = 50;
-	if (*score > 300) *speed = 25;
+{
+	if (*score > 50) *speed = 80;
+	if (*score > 100) *speed = 50;
+	if (*score > 150) *speed = 30;
+	if (*score > 200) *speed = 10;
+	if (*score > 250) *speed = 1;
 	return *speed;
 }
 
+
+//맵경계표시
 void EvadeGrade:: Mapline()
-{//맵경계표시
+{
 	for (int i = 0; i < MapY + 1; i++)
 	{
 		gotoxy(MapX, i); printf("■\n");
@@ -47,6 +50,7 @@ void EvadeGrade:: Mapline()
 	for (int i = 0; i < MapX / 2; i++) printf("■");
 }
 
+//맵 초기화
 void EvadeGrade:: InitMap()
 {
 	for (int i = 0; i < MapY; i++)
@@ -58,6 +62,7 @@ void EvadeGrade:: InitMap()
 	}
 }
 
+//학점 찍기
 void EvadeGrade:: PrintMap(int * P)
 {
 	for (int i = 0; i < MapY - 1; i++)
@@ -100,8 +105,9 @@ void EvadeGrade:: RowDownMap()
 	}
 }
 
+//목숨, 점수 계산 함수
 int EvadeGrade:: CollisionDetection(int *score, int * P, int *life)
-{                                //목숨, 점수 계산 함수
+{
 	for (int i = 0; i < MapX; i++)
 	{
 		if (map[MapY - 1][i] && P[i]) {
@@ -109,27 +115,23 @@ int EvadeGrade:: CollisionDetection(int *score, int * P, int *life)
 			{
 				gotoxy(MapX + 2, 3);
 			case 1:
-				//system("color f4");
 				printf(" A학점 취득!! 생명 회복(+2)! ");
 				*life += 2;
 				break;
 			case 2:
-				//system("color f1");
 				printf(" B학점 취득!! 생명 감소(-1)! ");
 				*life -= 1;
 				break;
 			case 3:
-				//system("color f6");
 				printf(" C학점 취득!! 생명 감소(-1)! ");
 				*life -= 2;
 				break;
 			case 4:
-				//system("color f2");
 				printf(" D학점 취득!! 생명 감소(-1)! ");
 				*life -= 3;
 				break;
 			case 5:
-				//system("color f0");
+				system("color f0");
 				*life -= 1000;
 				break;
 			}
@@ -203,17 +205,16 @@ void EvadeGrade:: keycontrol() {
 		}
 	}
 }
-void EvadeGrade:: play()
+void EvadeGrade::play()
 {
 	int stage = 1;
 	int score = 0;
 	int life = 5;
-	int speed = 300;
+	int speed = 100;
 
 	InitMap();
 	Mapline();
 
-	//system("color f4");
 	gotoxy(MapX + 2, 0);
 	printf("LIFE:♥♥♥♥♥");
 
@@ -228,6 +229,13 @@ void EvadeGrade:: play()
 		gotoxy(0, 0);
 		PrintMap(Person);
 
+		if (life < 2)
+			system("color f4");//빨강
+		if (life >= 2 and life < 5)
+			system("color f6");//노랑
+		if (life >= 5)
+			system("color f1");//파랑
+
 		if (CollisionDetection(&score, Person, &life)) break;
 		gradespeed(&speed, &score);
 		Sleep(speed);
@@ -238,14 +246,34 @@ void EvadeGrade:: play()
 		printf("score:%d", score);
 	}
 
-	system("cls");       //최종 점수 출력
-	gotoxy(MapX / 3, MapY / 4);
-	printf("Game Over!!\n");
-	printf("\t邕당신의 점수는 %d점입니다邕\n\n", score);//\t tap
+	system("cls"); //최종 점수 출력
+
+	for (int i = 0; i < 5; i++) { cout << "                                                                 " << endl; }
+	cout << " " << "###################################################################################" << endl;
+	cout << " " << "                                    Game Over!!                                   " << endl;
+	cout << " " << "                           邕 당신의 점수는 " << score << " 점 입니다 邕                      " << endl;
+	cout << " " << "                                                                                 " << endl;
+	cout << " " << "###################################################################################" << endl;
+
+	for (int i = 0; i < 3; i++) { cout << "                                                                 " << endl; }
+	cout << " " << ".d8888b.                                        .d88888b." << endl;
+	cout << " " << "d88P  Y88b                                     d88P' 'Y88b" << endl;
+	cout << " " << "888    888                                     888     888" << endl;
+	cout << " " << "888         8888b.  88888b.d88b.   .d88b.      888     888 888  888  .d88b.  888d888" << endl;
+	cout << " " << "888  88888     '88b 888 '888 '88b d8P  Y8b     888     888 888  888 d8P  Y8b 888P'" << endl;
+	cout << " " << "888    888 .d888888 888  888  888 88888888     888     888 Y88  88P 88888888 888" << endl;
+	cout << " " << "Y88b  d88P 888  888 888  888  888 Y8b.         Y88b. .d88P  Y8bd8P  Y8b.     888" << endl;
+	cout << " " << "'Y8888P88  'Y888888 888  888  888  'Y8888       'Y88888P'    Y88P    'Y8888  888" << endl;
+	Sleep(10000000);
 }
-void EvadeGrade::showEvadeGradeView()
+
+
+void EvadeGrade::showEvadeGradeView(int width, int height)
 {
-	//콘솔창 지우기
 	system("cls");
+	HWND console = GetConsoleWindow();
+	RECT r;
+	GetWindowRect(console, &r);
+	MoveWindow(console, r.left, r.top, width, height, TRUE);
 	play();
 }

@@ -19,5 +19,5 @@ public:
 	void randline();
 	void keycontrol();
 	void play();
-	void showEvadeGradeView();
+	void showEvadeGradeView(int width, int height);
 };

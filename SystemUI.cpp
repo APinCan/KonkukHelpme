@@ -74,11 +74,11 @@ int SystemUI::mainTitleMenu()
 	systemEvent.cursorMoveXY(19, 20);
 	cout << "> Name" << endl;
 	systemEvent.cursorMoveXY(x - 2, y);
-	cout << "> 게임시작(game1)";
+	cout << "> 일감호 건너기";
 	systemEvent.cursorMoveXY(x, y+1);
-	cout << "게임시작(game2)";
+	cout << "학식 피하기";
 	systemEvent.cursorMoveXY(x, y + 2);
-	cout << "게임시작(game3)";
+	cout << "학점 폭격기(방향키)";
 	systemEvent.cursorMoveXY(x, y + 3);
 	cout << "  랭킹";
 	systemEvent.cursorMoveXY(x, y+4);
@@ -126,7 +126,7 @@ void SystemUI::mainMenuAction(int index)
 		break;
 		//2=game3
 	case 2:
-		evadeGrade.showEvadeGradeView();
+		evadeGrade.showEvadeGradeView(720,640);
 		break;
 		//랭킹
 	case 3:
