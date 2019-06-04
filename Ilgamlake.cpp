@@ -3,6 +3,12 @@
 #include "windows.h"
 using namespace std;
 
+const int screenWidth = 60, screenHeight = 35;
+struct Position {
+	int x;
+	int y;
+};
+
 class Setting {
 public:
 	void SetConsoleSize(int width, int height) {
@@ -18,19 +24,6 @@ public:
 		pos.Y = y;
 		SetConsoleCursorPosition(hConsole, pos);
 	}
-	/*
-	void TextColor(int x) {
-		HANDLE mau;
-		mau = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleTextAttribute(mau, x);
-	}
-	*/
-};
-const int screenWidth = 60, screenHeight = 35;
-//enum Dir { STOP = 0, LEFT = 1, RIGHT = 2, UP = 3, DOWN = 4 };
-struct Position {
-	int x;
-	int y;
 };
 class Player
 {
@@ -116,11 +109,11 @@ public:
 	inline void CalcBodyPos() {
 		if (pivotPos.x > screenWidth) {
 			pivotPos.x = -1;
-			speed = rand() % 3 + 1;
+			speed = rand() % 3 + 2;
 		}
 		if (pivotPos.x < -1) {
 			pivotPos.x = screenWidth - 1;
-			speed = rand() % 3 + 1;
+			speed = rand() % 3 + 2;
 		}
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -178,12 +171,13 @@ public:
 class GameManager {
 private:
 	int score;
+	char grade;
 	int width; int height;
 	bool quit; bool restart;
 	bool gameOver;
 	Player *player;
 	Obstacle *obs[10];
-	Setting* set;
+	Setting *set;
 public:
 	GameManager(int h, int w) {
 		height = h, width = w;
@@ -191,7 +185,7 @@ public:
 		gameOver = false;
 		player = new Player(width / 2 - 1, height - 3);
 		for (int i = 0; i < 10; i++) {
-			int randomSpeed = rand() % 2 + 1;
+			int randomSpeed = rand() % 3 + 2;
 			{
 				if (i % 2 == 0) {
 					obs[i] = new Obstacle(2, i * 3 + 2, 2, randomSpeed, '>');
@@ -221,7 +215,8 @@ public:
 				player->setDirection(3);
 			}
 			else if (current == 's' || current == 'S') {
-				if (player->getPivotPosY() < height - 3) player->setDirection(4);
+				if (player->getPivotPosY() < height - 3)
+					player->setDirection(4);
 			}
 			else if (current == 'a' || current == 'A') {
 				player->setDirection(1);
@@ -234,10 +229,8 @@ public:
 	}
 	void scoreUp() {
 		score += 100;
-		//set->TextColor(14);
-		set->gotoxy(width / 2 - 8, height / 2);
+		set->gotoxy(width / 2 - 6, height / 2);
 		cout << "100점 획득!";
-		Beep(1200, 100);
 		Sleep(1000);
 		player->Reset();
 	}
@@ -257,20 +250,16 @@ public:
 				bool isPrinted = false;
 				bool playerPrinted = false;
 				if (y == 0 || y == height - 1) {
-					//set->TextColor(1);
 					cout << '#';
 					isPrinted = true;
-					//set->TextColor(0);
 				}
 				if (!isPrinted) {
 					for (int i = 0; i < 3; i++) {
 						for (int j = 0; j < 3; j++) {
 							if (y == player->bodyPos[i][j].y && x == player->bodyPos[i][j].x) {
-								//set->TextColor(14);
 								cout << '^';
 								isPrinted = true;
 								playerPrinted = true;
-								//set->TextColor(0);
 							}
 						}
 					}
@@ -280,11 +269,8 @@ public:
 						for (int v = 0; v < 3; v++) {
 							if (y == obs[t]->bodyPos[u][v].y && x == obs[t]->bodyPos[u][v].x) {
 								if (!playerPrinted) {
-									//if (enemy[t]->getBodyChar() == '>'); set->TextColor(11);
-									//else set->TextColor(10);
 									cout << obs[t]->getBodyChar();
 									isPrinted = true;
-									//set->TextColor(0);
 								}
 								else gameOver = true;
 							}
@@ -295,52 +281,62 @@ public:
 			}
 			cout << endl;
 		}
-		//set->TextColor(15);
-		set->gotoxy(width / 2 - 8, height);
+		set->gotoxy(width / 2 - 3, height + 1);
+		cout << "START";
+		set->gotoxy(screenWidth / 2 + 36, screenHeight / 2);
+		cout << "건국대 살려조";
+		set->gotoxy(screenWidth / 2 + 35, screenHeight / 2 + 1);
+		cout << "일감호를 건너라";
+		set->gotoxy(screenWidth / 2 + 39, screenHeight / 2 + 2);
 		cout << "점수: " << score;
-		//set->TextColor(0); set->TextColor(10);
-		set->gotoxy(width / 2 - 16, height + 1);
-		cout << "건국대 살려조_일감호를 건너라";
 	}
 	void Run() {
-	play:
 		while (!gameOver) {
 			CheckInput();
 			Logic();
 			Draw();
 		}
 		GameOver();
-		goto play;
 	}
 	void GameOver() {
-		set->gotoxy(width / 2 - 8, height / 2);
-		//set->TextColor(12);
-		cout << "게임 오버 ㅠ_ㅠ" << endl;
-		Beep(300, 500);
-		set->gotoxy(width / 2 - 13, height / 2 + 1);
-		cout << "획득한 총 점수는 " << score << "점 입니다.\n";
 		if (score == 0) {
-			set->gotoxy(width / 2 - 3, height / 2 + 2); cout << "F학점!!" << endl;
+			grade = 'F';
 		}
 		else if (score > 0 && score <= 200) {
-			set->gotoxy(width / 2 - 3, height / 2 + 2); cout << "D학점!!" << endl;
+			grade = 'D';
 		}
 		else if (score > 200 && score <= 400) {
-			set->gotoxy(width / 2 - 3, height / 2 + 2); cout << "C학점!!" << endl;
+			grade = 'C';
 		}
 		else if (score > 400 && score <= 600) {
-			set->gotoxy(width / 2 - 3, height / 2 + 2); cout << "B학점!!" << endl;
+			grade = 'B';
 		}
 		else {
-			set->gotoxy(width / 2 - 3, height / 2 + 2); cout << "A학점!!" << endl;
+			grade = 'A';
 		}
-		system("pause");
-		exit(0);
+		system("cls");
+		for (int i = 0; i < 5; i++) { cout << "                                                                 " << endl; }
+		cout << " " << "###################################################################################" << endl;
+		cout << " " << "                                  게임 오버 ㅠ_ㅠ                                   " << endl;
+		cout << " " << "                            획득한 총 점수는 " << score << "점 입니다.                  " << endl;
+		cout << " " << "                                     " << grade << " 학점!!                                       " << endl;
+		cout << " " << "###################################################################################" << endl;
+
+		for (int i = 0; i < 3; i++) { cout << "                                                                 " << endl; }
+		cout << " " << ".d8888b.                                        .d88888b." << endl;
+		cout << " " << "d88P  Y88b                                     d88P' 'Y88b" << endl;
+		cout << " " << "888    888                                     888     888" << endl;
+		cout << " " << "888         8888b.  88888b.d88b.   .d88b.      888     888 888  888  .d88b.  888d888" << endl;
+		cout << " " << "888  88888     '88b 888 '888 '88b d8P  Y8b     888     888 888  888 d8P  Y8b 888P'" << endl;
+		cout << " " << "888    888 .d888888 888  888  888 88888888     888     888 Y88  88P 88888888 888" << endl;
+		cout << " " << "Y88b  d88P 888  888 888  888  888 Y8b.         Y88b. .d88P  Y8bd8P  Y8b.     888" << endl;
+		cout << " " << "'Y8888P88  'Y888888 888  888  888  'Y8888       'Y88888P'    Y88P    'Y8888  888" << endl;
+		cout << " " << endl;
 	}
 };
 int Ilgamlake() {
 	Setting* sett = new Setting();
-	sett->SetConsoleSize(520, 640);
+	sett->SetConsoleSize(720, 640);
 	GameManager GM(screenHeight, screenWidth);
 	GM.Run();
 	return 0;
