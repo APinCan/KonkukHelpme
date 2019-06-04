@@ -1,7 +1,6 @@
 #include <iostream>
 #include "conio.h"
 #include "windows.h"
-#include "time.h"
 using namespace std;
 
 const int screenWidth = 60, screenHeight = 35;
@@ -110,11 +109,11 @@ public:
 	inline void CalcBodyPos() {
 		if (pivotPos.x > screenWidth) {
 			pivotPos.x = -1;
-			speed = rand() % 2 + 1;
+			speed = rand() % 3 + 1;
 		}
 		if (pivotPos.x < -1) {
 			pivotPos.x = screenWidth - 1;
-			speed = rand() % 2 + 1;
+			speed = rand() % 3 + 1;
 		}
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -186,7 +185,7 @@ public:
 		gameOver = false;
 		player = new Player(width / 2 - 1, height - 3);
 		for (int i = 0; i < 10; i++) {
-			int randomSpeed = rand() % 2 + 1;
+			int randomSpeed = rand() % 3 + 1;
 			{
 				if (i % 2 == 0) {
 					obs[i] = new Obstacle(2, i * 3 + 2, 2, randomSpeed, '>');
@@ -201,7 +200,6 @@ public:
 	~GameManager() {
 		delete player, obs;
 	}
-	/*
 	void Reset() {
 		score = 0;
 		gameOver = false;
@@ -210,7 +208,6 @@ public:
 			obs[t]->Reset();
 		}
 	}
-	*/
 	void CheckInput() {
 		if (_kbhit()) {
 			char current = _getch();
@@ -321,8 +318,8 @@ public:
 		for (int i = 0; i < 5; i++) { cout << "                                                                 " << endl; }
 		cout << " " << "###################################################################################" << endl;
 		cout << " " << "                                  °ÔÀÓ ¿À¹ö ¤Ð_¤Ð                                   " << endl;
-		cout << " " << "                            È¹µæÇÑ ÃÑ Á¡¼ö´Â " << score << "Á¡ ÀÔ´Ï´Ù.              " << endl;
-		cout << " " << "                                     " << grade << " ÇÐÁ¡!!                         " << endl;
+		cout << " " << "                            È¹µæÇÑ ÃÑ Á¡¼ö´Â " << score << "Á¡ ÀÔ´Ï´Ù.                  " << endl;
+		cout << " " << "                                     " << grade << " ÇÐÁ¡!!                                       " << endl;
 		cout << " " << "###################################################################################" << endl;
 
 		for (int i = 0; i < 3; i++) { cout << "                                                                 " << endl; }

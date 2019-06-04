@@ -12,7 +12,7 @@ SystemUI::~SystemUI()
 }
 
 //콘솔창의 크기를 조정
-void SystemUI::initFrame()
+void SystemUI::initFrame(int width, int height)
 {
 	system("mode con cols=150 lines=60 | title 건대생 살려조");
 
@@ -23,6 +23,11 @@ void SystemUI::initFrame()
 	ConsoleCursor.bVisible = 0; 
 	ConsoleCursor.dwSize = 1;
 	SetConsoleCursorInfo(consoleHandle, &ConsoleCursor);
+
+	HWND console = GetConsoleWindow();
+	RECT r;
+	GetWindowRect(console, &r);
+	MoveWindow(console, r.left, r.top, width, height, TRUE);
 }
 
 //메인타이틀 텍스트 출력
