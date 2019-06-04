@@ -9,7 +9,8 @@ Card::Card()
 	this->resultY2 = 6;
 	this->playCount = 0;
 	this->openCount = 0;
-	this->score = 0;
+	this->score = 20;
+	this->hint = 1;
 }
 int Card::getScore() {
 	return this->score;
@@ -19,6 +20,9 @@ int Card::getOC() {
 }
 int Card::getPC() {
 	return this->playCount;
+}
+int Card::getHint() {
+	return this->hint;
 }
 
 void Card::cardShuffle() {
@@ -46,7 +50,7 @@ void Card::Display0() {
 	system("cls");
 	cout << endl;
 	cout << "                카드 뒤집기 게임" << endl;
-	cout << " 뒤집은 횟수 : " << playCount << endl;
+	cout << " 뒤집은 횟수 : " << getPC()<<"                "<<"Hint 남은 횟수 : "<< getHint()<< endl;
 	cout << " ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" << endl;
 
 	for (int i = 0; i < 4; i++) {
@@ -64,7 +68,7 @@ void Card::Display1() {
 	system("cls");
 	cout << endl;
 	cout << "                카드 뒤집기 게임" << endl;
-	cout << " 뒤집은 횟수 : " << playCount << endl;
+	cout << " 뒤집은 횟수 : " << getPC() << "                " << "Hint 남은 횟수 : " << getHint() << endl;
 	cout << " ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" << endl;
 
 	for (int i = 0; i < 4; i++) {
@@ -99,66 +103,84 @@ void Card::Display1() {
 	cout << " ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" << endl;
 }
 
-
-
+void Card::Hint() {
+	if (hint == 1) {
+		system("cls");
+		Display0();
+		hint--;
+		Sleep(500);
+		Display1();
+		selectPlay1();
+	}
+	else {
+		system("cls");
+		for (int i = 0; i < 5; i++) { cout << "                                                                 " << endl; }
+		cout << " " << "###################################################################################" << endl;
+		cout << " " << "#                                                                                 #" << endl;
+		cout << " " << "#                                힌트를 다 썼습니다                               #" << endl;
+		cout << " " << "#                                                                                 #" << endl;
+		cout << " " << "###################################################################################" << endl;
+		Sleep(500);
+		Display1();
+		selectPlay1();
+	}
+}
 void Card::selectPlay1() {
 
-	int x, y;	// 0행 0열이 아닌 1행 1열로 시작하게 하기 위한 변수
 
+	int x, y;	// 0행 0열이 아닌 1행 1열로 시작하게 하기 위한 변수
+	cout << "Hint!!를 보고싶으시다면 H를 눌러주세요! : " << endl;
 	cout << " 1번째 뒤집을 카드를 선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
 
-	cin >> x >> y;
-
-	resultX1 = x - 1;
-
-	resultY1 = y - 1;
-
-	// 4행 4열 안에 값인지 확인해서 아니면 다시 입력
-
-	while (resultX1 > 3 || resultX1 < 0 || resultY1 > 4 || resultY1 < 0 || openCard[resultX1][resultY1] == 1) {
-
-		cout << " 잘못입력하셨거나 이미 오픈된 카드입니다." << endl;
-
-		cout << " 1번째 뒤집을 카드를 재선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
-
-		cin >> x >> y;
+	char key = _getch();
+	if (key == 'h') {
+		Hint();
+	}
+	else {
+		x = key - 48;
+		cout << x;
+		cin >> y;
 
 		resultX1 = x - 1;
 
 		resultY1 = y - 1;
+
+		// 4행 4열 안에 값인지 확인해서 아니면 다시 입력
+
+		while (resultX1 > 3 || resultX1 < 0 || resultY1 > 3 || resultY1 < 0 || openCard[resultX1][resultY1] == 1) {
+
+			cout << " 잘못입력하셨거나 이미 오픈된 카드입니다." << endl;
+
+			cout << " 1번째 뒤집을 카드를 재선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
+
+			cin >> x >> y;
+
+			resultX1 = x - 1;
+
+			resultY1 = y - 1;
+		}
 	}
 }
 
 void Card::selectPlay2() {
-	playCount++;	// 입력할때마다 증가
-	
-	int x, y;		// 0행 0열이 아닌 1행 1열로 시작하게 하기 위한 변수
-	cout << "Hint!!를 보고싶으시다면 H를 눌러주세요! : " << endl;
-	cout << "Hint는 필요없다!! 2번째 뒤집을 카드를 선택하겠다! ( ex) 1 1 ~ 4 4 ) 숫자를 눌러주세요! : ";
-	char key = _getch();
-	if (key == 'h') {
-		system("cls");
-		Display0();
-		Sleep(2000);
-	}
-	else {
-		x = key-48;
-		cout << x;
-		cin >> y;
+		playCount++;	// 입력할때마다 증가
 
+		int x, y;		// 0행 0열이 아닌 1행 1열로 시작하게 하기 위한 변수
+
+		cout << " 2번째 뒤집을 카드를 선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
+
+		cin >> x >> y;
 		resultX2 = x - 1;
 
 		resultY2 = y - 1;
+		// 4행 4열 안에 값인지 확인해서 아니면 다시 입력
 
-		// 4행 5열 안에 값인지 확인해서 아니면 다시 입력
-
-		while (resultX2 > 3 || resultX2 < 0 || resultY2 > 4 || resultY2 < 0 || openCard[resultX2][resultY2] == 1 || (resultX1 == resultX2 && resultY1 == resultY2)) {
+		while (resultX2 > 3 || resultX2 < 0 || resultY2 > 3 || resultY2 < 0 || openCard[resultX2][resultY2] == 1 || (resultX1 == resultX2 && resultY1 == resultY2)) {
 
 			cout << " 잘못입력하셨거나 이미 오픈된 카드입니다." << endl;
 			cout << " 2번째 뒤집을 카드를 재선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
-			x = key-48;
-			cout << x;
-			cin >> y;
+		
+			cin >> x >> y;
 
 			resultX2 = x - 1;
 
@@ -180,9 +202,9 @@ void Card::selectPlay2() {
 
 			score += 10;
 		}
+
 	}
-	
-}
+
 
 void Card::Display2() {
 
@@ -192,7 +214,7 @@ void Card::Display2() {
 
 	cout << "                카드 뒤집기 게임" << endl;
 
-	cout << " 뒤집은 횟수 : " << playCount << endl;
+	cout << " 뒤집은 횟수 : " << getPC() << "                " << "Hint 남은 횟수 : " << getHint() << endl;
 	cout << " ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" << endl;
 
 	for (int i = 0; i < 4; i++) {
@@ -244,10 +266,10 @@ void Card::SetConsoleSize(int width, int height)
 }
 
 void Card::grade(int score) {
-	if (score >= 70) { cout << " " << "#                                A 입니다.                                        #" << endl; }
-	else if (score >= 50) { cout << " " << "#                                B 입니다.                                        #" << endl; }
-	else if (score >= 30) { cout << " " << "#                                C 입니다.                                        #" << endl; }
-	else if (score >= 10) { cout << " " << "#                                D 입니다.                                        #" << endl; }
+	if (score >= 90) {	cout << " " << "#                                A 입니다.                                        #" << endl;}
+	else if (score >= 70) { cout << " " << "#                                B 입니다.                                        #" << endl; }
+	else if (score >= 50) { cout << " " << "#                                C 입니다.                                        #" << endl; }
+	else if (score >= 30) { cout << " " << "#                                D 입니다.                                        #" << endl; }
 	else { cout << " " << "#                                F 입니다.                                        #" << endl; }
 }
 
@@ -289,14 +311,11 @@ void Card::play() {
 		c.Display1();
 		c.selectPlay2();
 		c.Display2();
-		
-	if (c.getOC() == 14) break;//?쇨낢吏???李얠쑝硫??덉텧 //OR ?숈떇??怨좊Ⅴ硫? game over.//playcount瑜??쒗븳???ъ꽌 game over?좉퉴 怨좊?以?
-	
+
+		if (c.getOC() == 14) break;//?쇨낢吏???李얠쑝硫??덉텧 //OR ?숈떇??怨좊Ⅴ硫? game over.//playcount瑜??쒗븳???ъ꽌 game over?좉퉴 怨좊?以?
+
 	}
-
 	c.GameOver();
-
-
 }
 void Card::showCardView() {
 	system("cls");
