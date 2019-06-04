@@ -24,4 +24,3 @@ public:
 	int keyboardEvent();
 	void cursorMoveXY(int x, int y);
 };
-

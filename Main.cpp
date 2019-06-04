@@ -7,7 +7,7 @@ int main() {
 	SystemUI sysui;
 
 	//콘솔창크기조정
-	sysui.initFrame();
+	sysui.initFrame(720,640);
 	//메인화면 제목출력
 	sysui.mainTitle();
 	//메인화면 메뉴출력 및 선택한것의 index를 menuInput에 저장 

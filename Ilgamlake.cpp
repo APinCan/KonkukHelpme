@@ -109,11 +109,11 @@ public:
 	inline void CalcBodyPos() {
 		if (pivotPos.x > screenWidth) {
 			pivotPos.x = -1;
-			speed = rand() % 3 + 2;
+			speed = rand() % 3 + 1;
 		}
 		if (pivotPos.x < -1) {
 			pivotPos.x = screenWidth - 1;
-			speed = rand() % 3 + 2;
+			speed = rand() % 3 + 1;
 		}
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -185,7 +185,7 @@ public:
 		gameOver = false;
 		player = new Player(width / 2 - 1, height - 3);
 		for (int i = 0; i < 10; i++) {
-			int randomSpeed = rand() % 3 + 2;
+			int randomSpeed = rand() % 3 + 1;
 			{
 				if (i % 2 == 0) {
 					obs[i] = new Obstacle(2, i * 3 + 2, 2, randomSpeed, '>');

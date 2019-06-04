@@ -18,7 +18,7 @@ private:
 public:
 	SystemUI();
 	~SystemUI();
-	void initFrame();
+	void initFrame(int width, int height);
 	void mainTitle();
 	//void cursorMoveXY(int x, int y);
 	int mainTitleMenu();
