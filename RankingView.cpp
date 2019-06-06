@@ -55,24 +55,31 @@ void RankingView::addGameResult(string name, int score, int grade)
 
 void RankingView::showResultPage()
 {
+	system("cls");
 	SystemEvent systemEvent;
-	cout << "  _______   ______     ______    _______       _______      ___      .___  ___.  _______     __" << endl;
-	cout << "/  _____| /  __   |   /  __  |  |       |     /  _____|    /   |     |   |/   | |   ____|   |  |" << endl;
-	cout << "|  |  __  |  |  |  | |  |  |  | |  .--.  |   |  |  __     /  ^  |    |  |  /  | |  |__      |  |" << endl;
-	cout << "|  | |_ | |  |  |  | |  |  |  | |  |  |  |   |  | |_ |   /  /_|  |   |  ||/|  | |   __|     |  |" << endl;
-	cout << "|  |__| | |  `--'  | |  `--'  | |  '--'  |   |  |__| |  /  _____  |  |  |  |  | |  |____    |__|" << endl;
-	cout << "|_______|._______./   |______/  |.________.  ________| /__/     |__| |__|  |__| |_______|   (__)" << endl;
-	cout << "          __   __       ___       ___  ___   _______                                      \n\n\n" << endl;
-	cout << "         |  | |  |     /   |     |   |/   | |   ____|" << endl;
-	cout << "         |   ||  |    /  ^  |    |  |  /  | |  |__" << endl;
-	cout << "         |  . `  |   /  /_|  |   |  ||/|  | |   __|" << endl;
-	cout << "         |  ||   |  /  _____  |  |  |  |  | |  |____" << endl;
-	cout << "         |__| |__| /__/     |__| |__|  |__| |_______|" << endl;
+	cout << "==============================================" << endl;
+	cout << "||           _______    _______    __       ||" << endl;
+	cout << "||         /  _____|   /  _____|  |  |      ||" << endl;
+	cout << "||         |  |  __   |  |  __    |  |      ||" << endl;
+	cout << "||         |  | |_ |  |  | |_ |   |  |      ||" << endl;
+	cout << "||         |  |__| |  |  |__| |   |__|      ||" << endl;
+	cout << "||         |_______|  |_______|   (__)      ||" << endl;
+	cout << "||                                          ||" << endl;
+	cout << "==============================================\n";
+	cout << "   __   __       ___       ___  ___   _______" << endl;
+	cout << "  |  | |  |     /   |     |   |/   | |   ____|" << endl;
+	cout << "  |   ||  |    /  ^  |    |  |  /  | |  |__" << endl;
+	cout << "  |  . `  |   /  /_|  |   |  ||/|  | |   __|" << endl;
+	cout << "  |  ||   |  /  _____  |  |  |  |  | |  |____" << endl;
+	cout << "  |__| |__| /__/     |__| |__|  |__| |_______|" << endl;
+	cout << "\n\n\n";
+	cout << "                  ___";
 
-	systemEvent.cursorMoveXY(19, 10);
+	systemEvent.cursorMoveXY(16, 18);
 	cout << "> ";
 	cin >> tmpUsername;
 
+	//getUserScore();
 }
 
 //파일을 읽어서 userdata 벡터변수에 저장
@@ -149,6 +156,7 @@ void RankingView::getUserScore()
 	UserData setuser;
 
 	int sum = 0;
+	setuser.name = tmpUsername;
 	/*
 	sum+=userscore.첫번째게임
 	sum+=userscore.두번째게임

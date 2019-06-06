@@ -155,6 +155,7 @@ void SystemUI::mainMenuAction(int index)
 		break;
 		//Á¾·á
 	case 4:
+		rankingView.showResultPage();
 		break;
 	}
 }
