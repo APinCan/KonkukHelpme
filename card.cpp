@@ -1,6 +1,5 @@
 #include "card.h"
 
-
 Card::Card()
 {
 	this->resultX1 = 5;
@@ -11,6 +10,9 @@ Card::Card()
 	this->openCount = 0;
 	this->score = 20;
 	this->hint = 1;
+}
+Card::~Card() {
+
 }
 int Card::getScore() {
 	return this->score;
@@ -205,49 +207,10 @@ void Card::selectPlay2() {
 
 	}
 
-
 void Card::Display2() {
 
-	system("cls");
-
-	cout << endl;
-
-	cout << "                카드 뒤집기 게임" << endl;
-
-	cout << " 뒤집은 횟수 : " << getPC() << "                " << "Hint 남은 횟수 : " << getHint() << endl;
-	cout << " ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" << endl;
-
-	for (int i = 0; i < 4; i++) {
-		cout << "              " << "  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ " << endl;
-
-		if ((resultX1 == i && resultY1 == 0) || (resultX2 == i && resultY2 == 0) || openCard[i][0] == 1)
-		{
-			cout << "              " << "  │ " << back[i][0] << " │" << " │          │" << " │          │" << " │          │" << endl;
-		}
-		else { cout << "              " << "  │    " << front[i][0] << "    │" << " │          │" << " │          │" << " │          │" << endl; }
-
-		if ((resultX1 == i && resultY1 == 1) || (resultX2 == i && resultY2 == 1) || openCard[i][1] == 1)
-		{
-			cout << "              " << "  │          │" << " │ " << back[i][1] << " │ " << "│          │" << " │          │" << endl;
-		}
-		else { cout << "              " << "  │          │" << " │    " << front[i][1] << "    │" << " │          │" << " │          │" << endl; }
-
-		if ((resultX1 == i && resultY1 == 2) || (resultX2 == i && resultY2 == 2) || openCard[i][2] == 1)
-		{
-			cout << "              " << "  │          │" << " │          │" << " │ " << back[i][2] << " │ " << "│          │" << endl;
-		}
-		else { cout << "              " << "  │          │" << " │          │" << " │    " << front[i][2] << "    │" << " │          │" << endl; }
-
-		if ((resultX1 == i && resultY1 == 3) || (resultX2 == i && resultY2 == 3) || openCard[i][3] == 1)
-		{
-			cout << "              " << "  │          │" << " │          │" << " │          │ " << "│ " << back[i][3] << " │ " << endl;
-		}
-		else { cout << "              " << "  │          │" << " │          │" << " │          │" << " │    " << front[i][3] << "    │ " << endl; }
-
-		cout << "              " << "  └──────────┘ └──────────┘ └──────────┘ └──────────┘ " << endl;
-	}
-	cout << " ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" << endl;
-	Sleep(500);
+	Display1();
+    Sleep(500);
 
 	// 초기화
 

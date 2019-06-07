@@ -18,7 +18,7 @@ private:
 
 public:
 	Card();
-   
+	~Card();
 	string front[4][4] = { { "  ","  ","  ","  " },
 
 	{ "  ","  ","  ","  " },
