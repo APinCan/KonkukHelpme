@@ -9,7 +9,7 @@ Card::Card()
 	this->playCount = 0;
 	this->openCount = 0;
 	this->score = 20;
-	this->hint = 1;
+	this->hint = 2;
 }
 Card::~Card() {
 
@@ -52,7 +52,7 @@ void Card::Display0() {
 	system("cls");
 	cout << endl;
 	cout << "                ƒ´µÂ µ⁄¡˝±‚ ∞‘¿”" << endl;
-	cout << " µ⁄¡˝¿∫ »Ωºˆ : " << getPC()<<"                "<<"Hint ≥≤¿∫ »Ωºˆ : "<< getHint()<< endl;
+	cout << " µ⁄¡˝¿∫ »Ωºˆ : " << getOC()<<"                "<<"Hint ≥≤¿∫ »Ωºˆ : "<< getHint()<< endl;
 	cout << " §—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—" << endl;
 
 	for (int i = 0; i < 4; i++) {
@@ -70,7 +70,7 @@ void Card::Display1() {
 	system("cls");
 	cout << endl;
 	cout << "                ƒ´µÂ µ⁄¡˝±‚ ∞‘¿”" << endl;
-	cout << " µ⁄¡˝¿∫ »Ωºˆ : " << getPC() << "                " << "Hint ≥≤¿∫ »Ωºˆ : " << getHint() << endl;
+	cout << " µ⁄¡˝¿∫ »Ωºˆ : " << getOC() << "                " << "Hint ≥≤¿∫ »Ωºˆ : " << getHint() << endl;
 	cout << " §—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—§—" << endl;
 
 	for (int i = 0; i < 4; i++) {
@@ -106,7 +106,7 @@ void Card::Display1() {
 }
 
 void Card::Hint() {
-	if (hint == 1) {
+	if (hint <3 && hint >0) {
 		system("cls");
 		Display0();
 		hint--;
@@ -128,7 +128,7 @@ void Card::Hint() {
 	}
 }
 void Card::selectPlay1() {
-
+	playCount++;
 
 	int x, y;	// 0«‡ 0ø≠¿Ã æ∆¥— 1«‡ 1ø≠∑Œ Ω√¿€«œ∞‘ «œ±‚ ¿ß«— ∫Øºˆ
 	cout << "Hint!!∏¶ ∫∏∞ÌΩÕ¿∏Ω√¥Ÿ∏È H∏¶ ¥≠∑Ø¡÷ººø‰! : " << endl;
@@ -201,10 +201,8 @@ void Card::selectPlay2() {
 			openCard[resultX2][resultY2] = 1;
 
 			openCount += 2;
-
 			score += 10;
 		}
-
 	}
 
 void Card::Display2() {
@@ -242,7 +240,7 @@ void Card::GameOver(){
 	for (int i = 0; i < 5; i++) { cout << "                                                                 " << endl; }
 	cout << " " << "###################################################################################" << endl;
 	cout << " " << "#                                                                                 #" << endl;
-	cout << " " << "#                                " << playCount << " π¯ µ⁄¡˝æÓ º∫∞¯«œºÃΩ¿¥œ¥Ÿ                       #" << endl;
+	cout << " " << "#                                " << openCount << " ∞≥ ¬¶¿ª ∏¬√ﬂºÃΩ¿¥œ¥Ÿ                           #" << endl;
 	grade(score);
 	cout << " " << "#                                                                                 #" << endl;
 	cout << " " "###################################################################################" << endl;
@@ -275,7 +273,7 @@ void Card::play() {
 		c.selectPlay2();
 		c.Display2();
 
-		if (c.getOC() == 14) break;//?ºÍ≥±Ïß???Ï∞æÏúºÎ©??àÏ∂ú //OR ?ôÏãù??Í≥†Î•¥Î©? game over.//playcountÎ•??úÌïú???¨ÏÑú game over?†Íπå Í≥†Î?Ï§?
+		if (c.getPC() == 14) break;//?ºÍ≥±Ïß???Ï∞æÏúºÎ©??àÏ∂ú //OR ?ôÏãù??Í≥†Î•¥Î©? game over.//playcountÎ•??úÌïú???¨ÏÑú game over?†Íπå Í≥†Î?Ï§?
 
 	}
 	c.GameOver();
