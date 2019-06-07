@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3AA029FF-4087-407B-8952-C2337D9031A8}</ProjectGuid>
     <RootNamespace>KonkukHelpme</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -127,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="card.cpp" />
     <ClCompile Include="EvadeGrade.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Ilgamlake.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RankingView.cpp" />
@@ -134,7 +135,9 @@
     <ClCompile Include="SystemUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="card.h" />
     <ClInclude Include="EvadeGrade.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Ilgamlake.h" />
     <ClInclude Include="RankingView.h" />
     <ClInclude Include="SystemEvent.h" />

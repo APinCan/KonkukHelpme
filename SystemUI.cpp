@@ -144,6 +144,8 @@ void SystemUI::mainMenuAction(int index)
 		card.play();
 		Sleep(300);
 		evadeGrade.showEvadeGradeView(720,640);
+		Sleep(500);
+		rankingView.showResultPage(ilgamlake, card, evadeGrade);
 		break;
 		//1= game2
 	case 1:
@@ -152,6 +154,8 @@ void SystemUI::mainMenuAction(int index)
 		evadeGrade.showEvadeGradeView(720, 640);
 		Sleep(300);
 		ilgamlake.playIlgam();
+		Sleep(500);
+		rankingView.showResultPage(ilgamlake, card, evadeGrade);
 		break;
 		//2=game3
 	case 2:
@@ -160,6 +164,8 @@ void SystemUI::mainMenuAction(int index)
 		ilgamlake.playIlgam();
 		Sleep(300);
 		card.play();
+		Sleep(500);
+		rankingView.showResultPage(ilgamlake, card, evadeGrade);
 		break;
 		//·©Å·
 	case 3:
@@ -167,8 +173,11 @@ void SystemUI::mainMenuAction(int index)
 		break;
 		//Á¾·á
 	case 4:
-		rankingView.showResultPage();
+		exit(0);
 		break;
 	}
+
+
+
 	system("cls");
 }

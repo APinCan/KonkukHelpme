@@ -56,7 +56,7 @@ void RankingView::addGameResult(string name, int score, int grade)
 	writeRankingFile(tmpData);
 }
 
-void RankingView::showResultPage()
+void RankingView::showResultPage(Game game1, Game game2, Game game3)
 {
 	system("cls");
 	SystemEvent systemEvent;
@@ -82,7 +82,7 @@ void RankingView::showResultPage()
 	cout << "> ";
 	cin >> tmpUsername;
 
-	//getUserScore();
+	getUserScore(game1, game2, game3);
 }
 
 //파일을 읽어서 userdata 벡터변수에 저장
@@ -140,7 +140,7 @@ void RankingView::writeRankingFile(UserData tmpData)
 	ofstream file;
 
 	//쓰기 파일의 끝에 위치
-	file.open("Ranking.csv", ios::out | ios::ate);
+	file.open("Ranking.csv", ios::app);
 	if (file.fail()) {
 		cout << "file open fail" << endl;
 		exit(0);
@@ -154,39 +154,39 @@ void RankingView::writeRankingFile(UserData tmpData)
 	file.close();
 }
 
-void RankingView::getUserScore()
+void RankingView::getUserScore(Game game1, Game game2, Game game3)
 {
 	UserData setuser;
 	int sum = 0;
 
 	setuser.name = tmpUsername;
-	tmpScore = calculateScore();
+	tmpScore = calculateScore(game1, game2, game3);
 	tmpGrade = calculateGrade(tmpScore);
 	setuser.score = tmpScore;
 	setuser.grade = tmpGrade;
 
 	userdata.push_back(setuser);
 	writeRankingFile(setuser);
+
+	bubbleSort();
 }
 
 /*
 * 여기서부터는 최종적으로 얻은 score와 grade를
 * score는 100점만점으로 환산하고 grade는 100점만점을 기준으로 환산
 */
-int RankingView::calculateScore()
+int RankingView::calculateScore(Game game1, Game game2, Game game3)
 {
-	Ilgamlake lake;
-	Card card;
 	int score = 0;
 
 	try {
-		score += lake.getScore();
+		score += game1.getScore();
 	}
 	catch (const exception& e) {
 		e.what();
 	}
 	try {
-		score += card.getScore();
+		score += game2.getScore();
 	}
 	catch (const exception& e) {
 		e.what();

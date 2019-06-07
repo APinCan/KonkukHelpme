@@ -5,15 +5,16 @@
 #include<string>
 #include<Windows.h>
 #include<stdlib.h>
+#include"Game.h"
 
 using namespace std;
 
-class Card{
+class Card : public Game{
 private:
 	int resultX1, resultY1, resultX2, resultY2;		// 첫번째 카드위치 변수 resultX1, resultY1 / 두번째 카드위치 변수 resultX2, resultY2
 	int playCount;		// 카드를 뒤집은 횟수
 	int openCount;		// 맞춘 카드수
-	int score;
+	//int score;
 	int hint;
 
 public:
@@ -54,7 +55,7 @@ public:
 	void selectPlay2();		// 두번째 오픈카드 입력 처리 및 카드 진위여부 확인
 	void grade(int score);
 	void SetConsoleSize(int width, int heigh);
-	int getScore();
+	//int getScore();
 	int getOC();//opencount
 	int getPC();//playcount
 	int getHint();//hint count

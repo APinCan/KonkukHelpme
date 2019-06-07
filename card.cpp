@@ -14,9 +14,11 @@ Card::Card()
 Card::~Card() {
 
 }
+/*
 int Card::getScore() {
 	return this->score;
 }
+*/
 int Card::getOC() {
 	return this->openCount;
 }

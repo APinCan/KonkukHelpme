@@ -2,6 +2,7 @@
 #include <iostream>
 #include "conio.h"
 #include "windows.h"
+#include "Game.h"
 using namespace std;
 
 const int screenWidth = 60, screenHeight = 35;
@@ -73,10 +74,10 @@ public:
 	int sendScore();
 };
 
-class Ilgamlake {
+class Ilgamlake : public Game {
 private:
-	int score;
+	//int score;
 public:	
 	int playIlgam();
-	int getScore();
+	//int getScore();
 };

@@ -33,14 +33,14 @@ public:
 	void showRankingView();
 	void rankingViewFrame();
 	void addGameResult(string name, int score, int grade);
-	void showResultPage();
+	void showResultPage(Game game1, Game game2, Game game3);
 
 private:
 	void readRankingFile();
 	void bubbleSort();
 	void writeRankingFile(UserData tmpData);
-	void getUserScore();
-	int calculateScore();
+	void getUserScore(Game game1, Game game2, Game game3);
+	int calculateScore(Game game1, Game game2, Game game3);
 	int calculateGrade(int score);
 };
 

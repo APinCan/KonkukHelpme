@@ -303,6 +303,9 @@ int Ilgamlake::playIlgam() {
 	score = GM.sendScore();
 	return 0;
 }//게임 메인 클래스
+
+/*
 int Ilgamlake::getScore() { 
 	return score;
 }//systemui용 점수게터
+*/

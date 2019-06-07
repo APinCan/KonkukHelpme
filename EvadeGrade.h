@@ -1,10 +1,11 @@
 #pragma once
 #include<windows.h>
 #include<iostream>
+#include "Game.h"
 
 using namespace std;
 
-class EvadeGrade
+class EvadeGrade : public Game
 {
 public:
 	EvadeGrade();

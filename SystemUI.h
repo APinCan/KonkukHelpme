@@ -1,11 +1,13 @@
 #pragma once
 #include<iostream>
 #include<windows.h>
+#include<cstdlib>
 #include "SystemEvent.h"
 #include "RankingView.h"
 #include "EvadeGrade.h"
 #include "card.h"
 #include "Ilgamlake.h"
+#include "Game.h"
 
 using namespace std;
 
