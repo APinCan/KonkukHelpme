@@ -29,16 +29,16 @@ void RankingView::rankingViewFrame()
 	cout << "                                       __/ |" << endl;
 	cout << "                                      |___/" << endl;
 
-	printf("======================================================================================\n");
-	printf("||%3s %10s %30s %30s          ||\n","순위", "이름", "점수", "학점"); //공백10칸
-	printf("======================================================================================\n");
+	printf("=================================================================================\n");
+	printf("||%3s %10s %25s %25s          ||\n","순위", "이름", "점수", "학점"); //공백10칸
+	printf("=================================================================================\n");
 
 	//정해진 형태에 맞춰
 	for (int i = 0; i < userdata.size(); i++) {
-		printf("||%3d %10s %29d %29d            ||\n", i+1, (userdata.at(i).name).c_str(), userdata.at(i).score, userdata.at(i).grade); //공백 12칸
+		printf("||%3d %10s %24d %24d            ||\n", i+1, (userdata.at(i).name).c_str(), userdata.at(i).score, userdata.at(i).grade); //공백 12칸
 		Sleep(200); //조금 느리게 ㅊ ㅜㄹ력
 	}
-	printf("======================================================================================\n");
+	printf("=================================================================================\n");
 }
 
 //다른 클래스에서 ranking에 새로운 유저데이터 추가
@@ -51,6 +51,35 @@ void RankingView::addGameResult(string name, int score, int grade)
 	tmpData.grade = grade;
 	//csv파일에 넣기
 	writeRankingFile(tmpData);
+}
+
+void RankingView::showResultPage()
+{
+	system("cls");
+	SystemEvent systemEvent;
+	cout << "==============================================" << endl;
+	cout << "||           _______    _______    __       ||" << endl;
+	cout << "||         /  _____|   /  _____|  |  |      ||" << endl;
+	cout << "||         |  |  __   |  |  __    |  |      ||" << endl;
+	cout << "||         |  | |_ |  |  | |_ |   |  |      ||" << endl;
+	cout << "||         |  |__| |  |  |__| |   |__|      ||" << endl;
+	cout << "||         |_______|  |_______|   (__)      ||" << endl;
+	cout << "||                                          ||" << endl;
+	cout << "==============================================\n";
+	cout << "   __   __       ___       ___  ___   _______" << endl;
+	cout << "  |  | |  |     /   |     |   |/   | |   ____|" << endl;
+	cout << "  |   ||  |    /  ^  |    |  |  /  | |  |__" << endl;
+	cout << "  |  . `  |   /  /_|  |   |  ||/|  | |   __|" << endl;
+	cout << "  |  ||   |  /  _____  |  |  |  |  | |  |____" << endl;
+	cout << "  |__| |__| /__/     |__| |__|  |__| |_______|" << endl;
+	cout << "\n\n\n";
+	cout << "                  ___";
+
+	systemEvent.cursorMoveXY(16, 18);
+	cout << "> ";
+	cin >> tmpUsername;
+
+	//getUserScore();
 }
 
 //파일을 읽어서 userdata 벡터변수에 저장
@@ -127,6 +156,7 @@ void RankingView::getUserScore()
 	UserData setuser;
 
 	int sum = 0;
+	setuser.name = tmpUsername;
 	/*
 	sum+=userscore.첫번째게임
 	sum+=userscore.두번째게임

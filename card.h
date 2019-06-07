@@ -14,6 +14,7 @@ private:
 	int playCount;		// 카드를 뒤집은 횟수
 	int openCount;		// 맞춘 카드수
 	int score;
+	int hint;
 
 public:
 	Card();
@@ -56,7 +57,10 @@ public:
 	int getScore();
 	int getOC();//opencount
 	int getPC();//playcount
+	int getHint();//hint count
 	void play();
 	void showCardView();
+	void Hint();
+
 
 };

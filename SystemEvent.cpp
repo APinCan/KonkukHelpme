@@ -26,6 +26,7 @@ int SystemEvent::keyboardEvent()
 	else if (key == 'd' || key == 'D') {
 		return RIGHT;
 	}
+	
 	else if (13 == (int)key) {
 		return SUBMIT;
 	}

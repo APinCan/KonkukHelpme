@@ -40,8 +40,8 @@ void SystemUI::mainTitle()
 	cout << "        / //_/___  ____  / /____  __/ /__" << endl; //5
 	cout << "       / ,< / __ |/ __ |/ //_/ / / / //_/" << endl;//6
 	cout << "      / /| / /_/ / / / / ,< / /_/ / ,<" << endl;//7
-	cout << "     /_/ |_|____/_/ /_/_/|_||__,_/_/|_| __" << endl;//8
-	cout << "" << endl;//9
+	cout << "     /_/ |_|____/_/ /_/_/|_||__,_/_/|_| " << endl;//8
+	cout << "         __  __     __      __   __     __" << endl;//9
 	cout << "        / / / /__  / /___  /  |/  /__  / /" << endl; //10
 	cout << "       / /_/ / _ |/ / __ |/ /|_/ / _ |/ /" << endl; //11
 	cout << "      / __  /  __/ / /_/ / /  / /  __/_/" << endl;//12
@@ -73,11 +73,11 @@ void SystemUI::cursorMoveXY(int x, int y)
 int SystemUI::mainTitleMenu()
 {
 	SystemEvent systemEvent;
-	int x = 28;
+	int x = 19;
 	int y = 28;
 
-	systemEvent.cursorMoveXY(19, 20);
-	cout << "> Name" << endl;
+	systemEvent.cursorMoveXY(19, 19);
+	cout << "  Name" << endl;
 	systemEvent.cursorMoveXY(x - 2, y);
 	cout << "> 일감호 건너기";
 	systemEvent.cursorMoveXY(x, y+1);
@@ -95,7 +95,15 @@ int SystemUI::mainTitleMenu()
 
 		switch (key) {
 		case UP:
-			if (y > 28) {
+			//name을 입력하는 곳으로
+			if (y == 28) {
+				systemEvent.cursorMoveXY(x - 2, 28);
+				cout << " ";
+				systemEvent.cursorMoveXY(x - 2, 20);
+				cout << "> ";
+				y = 20;
+			}
+			else if (y > 28) {
 				systemEvent.cursorMoveXY(x - 2, y);
 				cout << " ";
 				systemEvent.cursorMoveXY(x - 2, --y);
@@ -103,7 +111,15 @@ int SystemUI::mainTitleMenu()
 			}
 			break;
 		case DOWN:
-			if (y < 32) {
+			//커서가 name쪽에 있는경우
+			if (y == 20) {
+				systemEvent.cursorMoveXY(x - 2, 20);
+				cout << " ";
+				systemEvent.cursorMoveXY(x - 2, 28);
+				cout<<">";
+				y = 28;
+			}
+			else if (y < 32) {
 				systemEvent.cursorMoveXY(x - 2, y);
 				cout << " ";
 				systemEvent.cursorMoveXY(x - 2, ++y);
@@ -139,6 +155,7 @@ void SystemUI::mainMenuAction(int index)
 		break;
 		//종료
 	case 4:
+		rankingView.showResultPage();
 		break;
 	}
 }

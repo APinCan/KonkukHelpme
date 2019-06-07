@@ -6,6 +6,7 @@
 #include<sstream>
 #include<vector>
 #include<algorithm>
+#include"SystemEvent.h"
 
 using namespace std;
 
@@ -20,6 +21,9 @@ class RankingView
 private:
 	string filePath;
 	vector<UserData> userdata;
+	string tmpUsername;
+	int tmpScore;
+	int tmpGrade;
 
 public:
 	RankingView();
@@ -27,6 +31,7 @@ public:
 	void showRankingView();
 	void rankingViewFrame();
 	void addGameResult(string name, int score, int grade);
+	void showResultPage();
 
 private:
 	void readRankingFile();
