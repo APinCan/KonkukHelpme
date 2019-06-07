@@ -140,14 +140,26 @@ void SystemUI::mainMenuAction(int index)
 	case 0:
 		//Ilgamlake();
 		ilgamlake.playIlgam();
+		Sleep(300);
+		card.play();
+		Sleep(300);
+		evadeGrade.showEvadeGradeView(720,640);
 		break;
 		//1= game2
 	case 1:
-		card.showCardView();
+		card.play();
+		Sleep(300);
+		evadeGrade.showEvadeGradeView(720, 640);
+		Sleep(300);
+		ilgamlake.playIlgam();
 		break;
 		//2=game3
 	case 2:
-		evadeGrade.showEvadeGradeView(720, 640);
+		evadeGrade.showEvadeGradeView(720,640);
+		Sleep(300);
+		ilgamlake.playIlgam();
+		Sleep(300);
+		card.play();
 		break;
 		//·©Å·
 	case 3:

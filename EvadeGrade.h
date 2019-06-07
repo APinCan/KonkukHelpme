@@ -20,4 +20,5 @@ public:
 	void keycontrol();
 	void play();
 	void showEvadeGradeView(int width, int height);
+	
 };

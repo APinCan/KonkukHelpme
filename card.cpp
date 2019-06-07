@@ -254,7 +254,6 @@ void Card::GameOver(){
 	cout << " " << "888    888 .d888888 888  888  888 88888888     888     888 Y88  88P 88888888 888" << endl;
 	cout << " " << "Y88b  d88P 888  888 888  888  888 Y8b.         Y88b. .d88P  Y8bd8P  Y8b.     888" << endl;
 	cout << " " << "'Y8888P88  'Y888888 888  888  888  'Y8888       'Y88888P'    Y88P    'Y8888  888" << endl;
-	Sleep(10000000);//일단은 잠들어놓게 하는걸로.....
 }
 
 void Card::play() {
@@ -278,8 +277,5 @@ void Card::play() {
 	}
 	c.GameOver();
 }
-void Card::showCardView() {
-	system("cls");
-	play();
-}
+
 

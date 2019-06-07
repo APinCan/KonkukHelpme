@@ -59,7 +59,6 @@ public:
 	int getPC();//playcount
 	int getHint();//hint count
 	void play();
-	void showCardView();
 	void Hint();
 
 
