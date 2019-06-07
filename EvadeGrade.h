@@ -5,17 +5,18 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <time.h>
+#include "Game.h"
 #define MapX 30
 #define MapY 30
 using namespace std;
 
-class EvadeGrade
+class EvadeGrade : public Game
 {
 
 public:
 
 	int stage; // 스테이지 
-	int score; // 점수
+	//int score; // 점수
 	int life; // 생명
 	int speed; // 학점 스피드 
 	int PerPosition; // 유저 위치 변경 변수 
@@ -49,7 +50,7 @@ public:
 
 	void play(); // 게임 PLAY
 	void showEvadeGradeView(int width, int height);
-	int getScore(); // 메인에 결과 점수 return 
+	//int getScore(); // 메인에 결과 점수 return 
 
 
 };

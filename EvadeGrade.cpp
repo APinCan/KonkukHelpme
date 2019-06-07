@@ -259,9 +259,5 @@ void EvadeGrade::showEvadeGradeView(int width, int height)
 	play();
 }
 
-int EvadeGrade::getScore()
-{
-	return this->score;
-}
 
 
