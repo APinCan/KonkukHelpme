@@ -1,6 +1,5 @@
 #include "SystemUI.h"
 
-//extern int Ilgamlake();
 
 SystemUI::SystemUI()
 {

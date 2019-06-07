@@ -74,7 +74,9 @@ public:
 };
 
 class Ilgamlake {
+private:
+	int score;
 public:	
 	int playIlgam();
-	void getScore();
+	int getScore();
 };

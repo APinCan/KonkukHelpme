@@ -293,15 +293,16 @@ void GameManager::GameOver() {
 }
 int GameManager::sendScore(){
 	return score;
-}//게임 메인 클래스로 점수 반환
+}//게임 메인 클래스용 점수게터
 
 int Ilgamlake::playIlgam() {
 	Setting* sett = new Setting();
 	sett->SetConsoleSize(720, 640);
 	GameManager GM(screenHeight, screenWidth);
 	GM.Run();
+	score = GM.sendScore();
 	return 0;
 }//게임 메인 클래스
-void Ilgamlake::getScore() { 
-	void sendScore();
-}//점수 보내주는 메소드
+int Ilgamlake::getScore() { 
+	return score;
+}//systemui용 점수게터
