@@ -54,7 +54,7 @@ void Card::Display0() {
 	system("cls");
 	cout << endl;
 	cout << "                카드 뒤집기 게임" << endl;
-	cout << " 뒤집은 횟수 : " << getOC()<<"                "<<"Hint 남은 횟수 : "<< getHint()<< endl;
+	cout << " 맞춘 카드 개수 : " << getOC()<<"                "<<"Hint 남은 횟수 : "<< getHint()<< endl;
 	cout << " ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" << endl;
 
 	for (int i = 0; i < 4; i++) {
@@ -72,7 +72,7 @@ void Card::Display1() {
 	system("cls");
 	cout << endl;
 	cout << "                카드 뒤집기 게임" << endl;
-	cout << " 뒤집은 횟수 : " << getOC() << "                " << "Hint 남은 횟수 : " << getHint() << endl;
+	cout << " 맞춘 카드 개수 : " << getOC() << "                " << "Hint 남은 횟수 : " << getHint() << endl;
 	cout << " ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" << endl;
 
 	for (int i = 0; i < 4; i++) {
@@ -183,27 +183,12 @@ void Card::selectPlay2() {
 
 			cout << " 잘못입력하셨거나 이미 오픈된 카드입니다." << endl;
 			cout << " 2번째 뒤집을 카드를 재선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
-		
+
 			cin >> x >> y;
 
 			resultX2 = x - 1;
 
 			resultY2 = y - 1;
-		}
-
-		// 카드를 맞추었다면 
-		// 카드를 맞추었는데 만약 학식이다. --> 바로 game out
-		if (result[resultX1][resultY1] == 3 && result[resultX2][resultY2] == 3) {
-			GameOver();
-		}
-		else if (result[resultX1][resultY1] == result[resultX2][resultY2]) {
-
-			openCard[resultX1][resultY1] = 1;
-
-			openCard[resultX2][resultY2] = 1;
-
-			openCount += 2;
-			score += 10;
 		}
 	}
 
@@ -272,6 +257,20 @@ void Card::play() {
 		c.selectPlay1();
 		c.Display1();
 		c.selectPlay2();
+		// 카드를 맞추었다면 
+		// 카드를 맞추었는데 만약 학식이다. --> 바로 game out
+		if (c.result[c.resultX1][c.resultY1] == 3 && c.result[c.resultX2][c.resultY2] == 3) {
+			break;
+		}
+		else if (c.result[c.resultX1][c.resultY1] == c.result[c.resultX2][c.resultY2]) {
+
+			c.openCard[c.resultX1][c.resultY1] = 1;
+
+			c.openCard[c.resultX2][c.resultY2] = 1;
+
+			c.openCount += 2;
+			c.score += 10;
+		}
 		c.Display2();
 
 		if (c.getPC() == 14) break;//?쇨낢吏???李얠쑝硫??덉텧 //OR ?숈떇??怨좊Ⅴ硫? game over.//playcount瑜??쒗븳???ъ꽌 game over?좉퉴 怨좊?以?
