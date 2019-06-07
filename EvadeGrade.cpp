@@ -226,7 +226,8 @@ void EvadeGrade::play()
 	}
 
 	system("cls"); //최종 점수 출력
-	ev.gotoxy(MapX / 3, MapY / 4);
+	//ev.gotoxy(MapX / 3, MapY / 4);
+	system("color 07");//원래대로
 
 
 	for (int i = 0; i < 5; i++) { cout << "                                                                 " << endl; }
