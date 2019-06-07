@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EvadeGrade.h" />
+    <ClInclude Include="Ilgamlake.h" />
     <ClInclude Include="RankingView.h" />
     <ClInclude Include="SystemEvent.h" />
     <ClInclude Include="SystemUI.h" />

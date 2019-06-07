@@ -5,6 +5,7 @@
 #include "RankingView.h"
 #include "EvadeGrade.h"
 #include "card.h"
+#include "Ilgamlake.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ private:
 	RankingView rankingView;
 	EvadeGrade evadeGrade;
 	Card card;
+	Ilgamlake ilgamlake;
 
 public:
 	SystemUI();

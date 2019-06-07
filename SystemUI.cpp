@@ -1,6 +1,6 @@
 #include "SystemUI.h"
 
-extern int Ilgamlake();
+//extern int Ilgamlake();
 
 SystemUI::SystemUI()
 {
@@ -139,7 +139,8 @@ void SystemUI::mainMenuAction(int index)
 	switch (index) {
 	//0 = game1
 	case 0:
-		Ilgamlake();
+		//Ilgamlake();
+		ilgamlake.playIlgam();
 		break;
 		//1= game2
 	case 1:
