@@ -296,6 +296,7 @@ int GameManager::sendScore(){
 }//게임 메인 클래스용 점수게터
 
 int Ilgamlake::playIlgam() {
+	system("cls");
 	Setting* sett = new Setting();
 	sett->SetConsoleSize(720, 640);
 	GameManager GM(screenHeight, screenWidth);
