@@ -136,7 +136,7 @@ int SystemUI::mainTitleMenu()
 void SystemUI::mainMenuAction(int index)
 {
 	switch (index) {
-	//0 = game1
+		//0 = game1
 	case 0:
 		//Ilgamlake();
 		ilgamlake.playIlgam();
@@ -147,7 +147,7 @@ void SystemUI::mainMenuAction(int index)
 		break;
 		//2=game3
 	case 2:
-		evadeGrade.showEvadeGradeView(720,640);
+		evadeGrade.showEvadeGradeView(720, 640);
 		break;
 		//·©Å·
 	case 3:
@@ -158,4 +158,5 @@ void SystemUI::mainMenuAction(int index)
 		rankingView.showResultPage();
 		break;
 	}
+	system("cls");
 }

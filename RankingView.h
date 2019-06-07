@@ -7,6 +7,8 @@
 #include<vector>
 #include<algorithm>
 #include"SystemEvent.h"
+#include "Ilgamlake.h"
+#include "card.h"
 
 using namespace std;
 
@@ -38,5 +40,7 @@ private:
 	void bubbleSort();
 	void writeRankingFile(UserData tmpData);
 	void getUserScore();
+	int calculateScore();
+	int calculateGrade(int score);
 };
 

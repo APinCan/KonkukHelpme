@@ -2,6 +2,7 @@
 
 RankingView::RankingView()
 {
+	readRankingFile();
 }
 
 
@@ -13,7 +14,6 @@ void RankingView::showRankingView()
 {
 	//콘솔창 지우기
 	system("cls");
-	readRankingFile();
 	rankingViewFrame();
 }
 
@@ -24,21 +24,24 @@ void RankingView::rankingViewFrame()
 	cout << "| ___                | |   (_)" << endl;
 	cout << "| |_/ /  __ _  _ __  | | __ _  _ __    __ _" << endl;
 	cout << "|    /  / _` || '_   | |/ /| || '_    / _` |" << endl;
-	cout << "| |  | (_| | || | | ||   < | || | | |(_| |"<<endl;
+	cout << "| |  | (_| | || | | ||   < | || | | |(_| |" << endl;
 	cout << "|_| |_| |__,_||_| |_||_| _||_||_| |_|  __, |" << endl;
 	cout << "                                       __/ |" << endl;
 	cout << "                                      |___/" << endl;
 
 	printf("=================================================================================\n");
-	printf("||%3s %10s %25s %25s          ||\n","순위", "이름", "점수", "학점"); //공백10칸
+	printf("||%3s %10s %25s %25s          ||\n", "순위", "이름", "점수", "학점"); //공백10칸
 	printf("=================================================================================\n");
 
 	//정해진 형태에 맞춰
 	for (int i = 0; i < userdata.size(); i++) {
-		printf("||%3d %10s %24d %24d            ||\n", i+1, (userdata.at(i).name).c_str(), userdata.at(i).score, userdata.at(i).grade); //공백 12칸
+		printf("||%3d %10s %24d %24d            ||\n", i + 1, (userdata.at(i).name).c_str(), userdata.at(i).score, userdata.at(i).grade); //공백 12칸
 		Sleep(200); //조금 느리게 ㅊ ㅜㄹ력
 	}
 	printf("=================================================================================\n");
+	printf("아무키나 누르면 초기화면으로");
+
+	char tmp = _getch();
 }
 
 //다른 클래스에서 ranking에 새로운 유저데이터 추가
@@ -154,21 +157,68 @@ void RankingView::writeRankingFile(UserData tmpData)
 void RankingView::getUserScore()
 {
 	UserData setuser;
-
 	int sum = 0;
+
 	setuser.name = tmpUsername;
-	/*
-	sum+=userscore.첫번째게임
-	sum+=userscore.두번째게임
-	sum+=userscore.세번째게임
-	int score=(int)(sum/3);
+	tmpScore = calculateScore();
+	tmpGrade = calculateGrade(tmpScore);
+	setuser.score = tmpScore;
+	setuser.grade = tmpGrade;
 
-	//등급평가 코드
-
-	setuser.name="";
-	setuser.score=score;
-	setuser.grade=;
-	*/
 	userdata.push_back(setuser);
 	writeRankingFile(setuser);
+}
+
+/*
+* 여기서부터는 최종적으로 얻은 score와 grade를
+* score는 100점만점으로 환산하고 grade는 100점만점을 기준으로 환산
+*/
+int RankingView::calculateScore()
+{
+	Ilgamlake lake;
+	Card card;
+	int score = 0;
+
+	try {
+		score += lake.getScore();
+	}
+	catch (const exception& e) {
+		e.what();
+	}
+	try {
+		score += card.getScore();
+	}
+	catch (const exception& e) {
+		e.what();
+	}
+
+
+	score = score / 3;
+	
+	return score;
+}
+
+int RankingView::calculateGrade(int score)
+{
+	if (score >= 90) {
+		return 1;
+	}
+	else if (score >= 80) {
+		return 2;
+	}
+	else if (score >= 70) {
+		return 3;
+	}
+	else if (score >= 60) {
+		return 4;
+	}
+	else if (score >= 50) {
+		return 5;
+	}
+	else if (score >= 40) {
+		return 6;
+	}
+	else {
+		return 7;
+	}
 }
