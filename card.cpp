@@ -134,7 +134,7 @@ void Card::selectPlay1() {
 
 	int x, y;	// 0행 0열이 아닌 1행 1열로 시작하게 하기 위한 변수
 	cout << "Hint!!를 보고싶으시다면 H를 눌러주세요! : " << endl;
-	cout << " 1번째 뒤집을 카드를 선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
+	cout << " 첫번째 뒤집을 카드를 선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
 
 	char key = _getch();
 	if (key == 'h') {
@@ -152,10 +152,16 @@ void Card::selectPlay1() {
 		// 4행 4열 안에 값인지 확인해서 아니면 다시 입력
 
 		while (resultX1 > 3 || resultX1 < 0 || resultY1 > 3 || resultY1 < 0 || openCard[resultX1][resultY1] == 1) {
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(100, '\n');
+			}
+			else
+				break;
 
 			cout << " 잘못입력하셨거나 이미 오픈된 카드입니다." << endl;
 
-			cout << " 1번째 뒤집을 카드를 재선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
+			cout << " 두번째 뒤집을 카드를 재선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
 
 			cin >> x >> y;
 
@@ -174,16 +180,23 @@ void Card::selectPlay2() {
 		cout << " 2번째 뒤집을 카드를 선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
 
 		cin >> x >> y;
+		
 		resultX2 = x - 1;
 
 		resultY2 = y - 1;
 		// 4행 4열 안에 값인지 확인해서 아니면 다시 입력
 
-		while (resultX2 > 3 || resultX2 < 0 || resultY2 > 3 || resultY2 < 0 || openCard[resultX2][resultY2] == 1 || (resultX1 == resultX2 && resultY1 == resultY2)) {
 
+		while (resultX2 > 3 || resultX2 < 0 || resultY2 > 3 || resultY2 < 0 || openCard[resultX2][resultY2] == 1 || (resultX1 == resultX2 && resultY1 == resultY2)
+) {
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(100, '\n');
+			}
+			else
+				break;
 			cout << " 잘못입력하셨거나 이미 오픈된 카드입니다." << endl;
 			cout << " 2번째 뒤집을 카드를 재선택하세요 ( ex) 1 1 ~ 4 4 ) : ";
-
 			cin >> x >> y;
 
 			resultX2 = x - 1;
@@ -257,6 +270,7 @@ void Card::play() {
 		c.selectPlay1();
 		c.Display1();
 		c.selectPlay2();
+		
 		// 카드를 맞추었다면 
 		// 카드를 맞추었는데 만약 학식이다. --> 바로 game out
 		if (c.result[c.resultX1][c.resultY1] == 3 && c.result[c.resultX2][c.resultY2] == 3) {

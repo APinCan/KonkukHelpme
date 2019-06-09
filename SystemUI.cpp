@@ -140,11 +140,11 @@ void SystemUI::mainMenuAction(int index)
 	case 0:
 		//Ilgamlake();
 		ilgamlake.playIlgam();
-		Sleep(300);
+		Sleep(1500);
 		card.play();
-		Sleep(300);
+		Sleep(1500);
 		evadeGrade.showEvadeGradeView(720,640);
-		Sleep(500);
+		Sleep(1500);
 		rankingView.showResultPage(ilgamlake, card, evadeGrade);
 		break;
 		//1= game2
