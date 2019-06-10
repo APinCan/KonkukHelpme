@@ -1,21 +1,16 @@
-﻿name,score,grade
-AAA,55,2
-BBB,35,4
-CCC,85,7
-DDD,90,6
-EEE,20,1
-FFF,30,3
-GGG,40,4
-HHH,50,2
-III,60,5
-JJJ,70,4
-KKK,10,4
-LLL,15,3
-MMM,65,6
-NNNN,75,1
-JHS, 26, 7, 
-dd, 6, 7, 
-3, 6, 7, 
-3, 6, 7, 
-Hello, 13, 7, 
-HIHI, 20, 7, 
+﻿name,score,grade,
+AAA,55,5,
+BBB,35,7,
+CCC,85,2,
+DDD,90,1,
+EEE,20,7,
+FFF,30,7,
+GGG,40,6,
+HHH,50,5,
+III,60,4,
+JJJ,70,3,
+KKK,10,7,
+LLL,15,7,
+MMM,65,4,
+NNNN,75,3,
+JHS,26,7, 
